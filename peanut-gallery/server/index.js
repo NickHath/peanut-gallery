@@ -1,6 +1,7 @@
 // required packages
 const express = require('express'),
       bodyParser = require('body-parser'),
+      cors = require('cors'),   // to avoid Access-Control-Allow-Origin error
       app = express(),
       axios = require('axios'),
       port = 4000,
@@ -14,6 +15,7 @@ let omdbApiKey = '1197693b',
     omdbBaseURL = 'http://www.omdbapi.com/',
     hardCodedTitle = 'Titanic';
 
+app.use(cors())
 app.use(bodyParser.json());
 
 // api endpoint that react will use to get reviews

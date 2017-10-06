@@ -48,8 +48,8 @@ class App extends Component {
               <DownloadLinks reviewsTxt={this.state.reviewsTxt}/> :
               <SearchBox setSearchTerm={this.setSearchTerm} setReviewsTxt={this.setReviewsTxt}/>
           } */}
-          {/* <SearchBox setSearchTerm={this.setSearchTerm} setReviewsTxt={this.setReviewsTxt}/> */}
-          {<DownloadLinks reviewsTxt={this.state.reviewsTxt} movieTitle={this.state.searchTerm}/>}
+          {<SearchBox setSearchTerm={this.setSearchTerm} setReviewsTxt={this.setReviewsTxt}/>}
+          {/*<DownloadLinks reviewsTxt={this.state.reviewsTxt} movieTitle={this.state.searchTerm}/>*/}
         </div>
       </MuiThemeProvider>
     );
