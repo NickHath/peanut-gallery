@@ -3,7 +3,7 @@ const axios = require('axios'),
 
 // export the scraping function
 module.exports = function scrapeFromURL(url, title) {
-  // hardcode max reviews
+  // hardcode max num of pages to scrape
   let lastPageIndex = 5;
   let reviewsHTML = '';
   let reviewsTXT = '';

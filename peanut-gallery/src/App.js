@@ -22,7 +22,7 @@ class App extends Component {
     this.state = {
       searchTerm: "",
       reviewsTxt: "",
-      showProgress: true
+      showSearchBox: true // for conditional rendering of search box / download links 
     }
     this.setSearchTerm = this.setSearchTerm.bind(this);
     this.setReviewsTxt = this.setReviewsTxt.bind(this);
@@ -34,6 +34,7 @@ class App extends Component {
 
   setReviewsTxt() {
     axios.get(`http://localhost:4000/api/reviews/?title=${this.state.searchTerm}`)
+         .then((res) => console.log(res))
          .then((res) => this.setState({reviewsTxt: res}))
   }
 

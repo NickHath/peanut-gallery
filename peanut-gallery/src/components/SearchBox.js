@@ -12,9 +12,6 @@ const style = {
 class SearchBox extends Component {
   constructor() {
     super();
-    this.state = {
-      movieTitle: "",
-    }
   }
 
   render() {
@@ -24,7 +21,7 @@ class SearchBox extends Component {
         <TextField placeholder="Enter movie name"
                   onChange={(e) => this.props.setSearchTerm(e.target.value)}/>
         <RaisedButton label="Search" style={style}
-                      onClick={this.props.setReviewsTxt}/>
+                      onClick={() => this.props.setReviewsTxt()}/>
       </div>
     )
   }
