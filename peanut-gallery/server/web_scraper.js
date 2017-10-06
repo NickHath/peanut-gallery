@@ -1,11 +1,11 @@
 // for testing 
-const fs = require('fs')
+const fs = require('fs');
 
 // lowdb
-const low = require('lowdb')
-const FileSync = require('lowdb/adapters/FileSync')
-const adapter = new FileSync('./low-db/db.json')
-const db = low(adapter)
+const low = require('lowdb');
+const FileSync = require('lowdb/adapters/FileSync');
+const adapter = new FileSync('./low-db/db.json');
+const db = low(adapter);
 
 // Set some defaults
 /*
@@ -16,22 +16,22 @@ const axios = require('axios'),
       cheerio = require('cheerio');
       //USE TO LOAD IN HTML TO PARSE $ = cheerio.load();
 
-function getNumPages(url) {
+function lastPageNum(url) {
+  let lastPage, pages;
   axios.get(url + `?start=0`)
        .then((res) => {
           let $ = cheerio.load(res.data);
-          let lastPage;
           $('font').each((index, element) => {
             // pull text from font tag and set lastPage to last word in .text()
-            let pages = $(element).text();
-            fs.writeFile('finalPage.txt', pages);
+            pages = $(element).text();
+            lastPage = pages[pages.length - 1];
           })
        })
 }
 
 
+// export the scraping function
 module.exports = function scrapeFromURL(url, endReviewPage, title) {
-  getNumPages(`url`);
   for (var i = 0; i < endReviewPage; i += 10) {
     fs.appendFile('reviews/pages_visited', `?start=${i}\n`);
     axios.get(url + `?start=${i}`)
