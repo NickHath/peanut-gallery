@@ -34,15 +34,12 @@ class App extends Component {
          .then((res) => this.setState({reviewsTxt: res}))
   }
 
-
   render() {
     return (
       <MuiThemeProvider>
         <div className="app">
           <SearchBox setSearchTerm={this.setSearchTerm} setReviewsTxt={this.setReviewsTxt}/>
           <DownloadLinks />
-          <ResultsFeed />
-          <ProgressBar />
         </div>
       </MuiThemeProvider>
     );

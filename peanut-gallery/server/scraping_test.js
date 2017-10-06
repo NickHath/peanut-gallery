@@ -1,7 +1,7 @@
-const scrapeFromURL = require('./web_scraper.js'),
-      lastPageIndex = require('./last_page_of_reviews.js');
+const scrapeFromURL = require('./web_scraper.js');
+      // getLastPage = require('./get_last_page.js');
       
 let testImdbURL = `http://www.imdb.com/title/tt0084787/reviews`
 
-scrapeFromURL(testImdbURL, 'The Thing');
-console.log(lastPageIndex(testImdbURL));
+console.log(scrapeFromURL(testImdbURL, 'The Thing'));
+// console.log(getLastPage(testImdbURL));
