@@ -7,16 +7,24 @@ const style = {
   margin: 12
 }
 
-// ALTERNATIVE TYPING COMPONENT THAT DELETES https://www.npmjs.com/package/react-typewriter
+// change to react-type !!! https://www.npmjs.com/package/react-type
 
 class SearchBox extends Component {
+  constructor() {
+    super();
+    this.state = {
+      movieTitle: "",
+    }
+  }
+
   render() {
     return(
       <div className="search_box">
         <h1>Search for reviews of <Typist avgTypingDelay={110}>Terminator</Typist></h1>
         <TextField placeholder="Enter movie name"
                   onChange={(e) => this.props.setSearchTerm(e.target.value)}/>
-        <RaisedButton label="Search" style={style}/>
+        <RaisedButton label="Search" style={style}
+                      onClick={this.props.setReviewsTxt}/>
       </div>
     )
   }

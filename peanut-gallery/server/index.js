@@ -27,15 +27,18 @@ axios.get(`${omdbBaseURL}?apikey=${omdbApiKey}&t=${hardCodedTitle}`)
      .then((res) => fs.writeFile(`${hardCodedTitle}.json`, JSON.stringify(res.data)));
 
 // api endpoint that react will use to get reviews
-app.get(`${baseURL}:title`, (req, res, next) => {
-  let movieTitle = req.params.title;
+app.get(`${baseURL}`, (req, res, next) => {
+  let movieTitle = req.query.title;
+  console.log(movieTitle);
   movieTitle = movieTitle.toLowerCase().replace(' ', '%20');
+  // get imdbID and ratings from omdb api
   axios.get(`${omdbBaseURL}?apikey=${omdbApiKey}&t=${movieTitle}`)
        .then((res) => {
+         let imdbKey = res.data.imdbID;
          // to write -- call web_scraper with correct imdb url, return all reviews
-         // 50 means return the first 50 reviews
-         // scrapeFromURL(`http://www.imdb.com/title/${imdbKey}/reviews`, 50, movieTitle);
-         res.status(200).send(res.data);
+
+         let reviews = scrapeFromURL(`http://www.imdb.com/title/${imdbKey}/reviews`,movieTitle);
+         res.status(200).send(reviews);
       });
 })
 

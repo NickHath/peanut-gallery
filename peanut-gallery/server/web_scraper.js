@@ -16,23 +16,12 @@ const axios = require('axios'),
       cheerio = require('cheerio');
       //USE TO LOAD IN HTML TO PARSE $ = cheerio.load();
 
-function lastPageNum(url) {
-  let lastPage, pages;
-  axios.get(url + `?start=0`)
-       .then((res) => {
-          let $ = cheerio.load(res.data);
-          $('font').each((index, element) => {
-            // pull text from font tag and set lastPage to last word in .text()
-            pages = $(element).text();
-            lastPage = pages[pages.length - 1];
-          })
-       })
-}
-
 
 // export the scraping function
-module.exports = function scrapeFromURL(url, endReviewPage, title) {
-  for (var i = 0; i < endReviewPage; i += 10) {
+module.exports = function scrapeFromURL(url, title) {
+  //const lastPageIndex = require('./last_page_of_reviews.js')(url);
+  let lastPageIndex = 5;
+  for (var i = 0; i < (lastPageIndex - 1) * 10; i += 10) {
     fs.appendFile('reviews/pages_visited', `?start=${i}\n`);
     axios.get(url + `?start=${i}`)
 
