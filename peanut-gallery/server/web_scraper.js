@@ -21,7 +21,6 @@ async function scrapeFromURL(url, title) {
   }
   console.log(reviewsTXT);
   return reviewsTXT;
-  //return 'test';
 }
 
-var tempPromise = scrapeFromURL(`http://www.imdb.com/title/tt0084787/reviews`, 'The Thing');
+scrapeFromURL(`http://www.imdb.com/title/tt0084787/reviews`, 'The Thing');

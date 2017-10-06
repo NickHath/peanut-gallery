@@ -22,7 +22,7 @@ class App extends Component {
     this.state = {
       searchTerm: "",
       reviewsTxt: "",
-      showSearchBox: true // for conditional rendering of search box / download links 
+      receivedResults: false // for conditional rendering of search box / download links 
     }
     this.setSearchTerm = this.setSearchTerm.bind(this);
     this.setReviewsTxt = this.setReviewsTxt.bind(this);
@@ -34,8 +34,8 @@ class App extends Component {
 
   setReviewsTxt() {
     axios.get(`http://localhost:4000/api/reviews/?title=${this.state.searchTerm}`)
-         .then((res) => console.log(res))
-         .then((res) => this.setState({reviewsTxt: res}))
+         //.then((res) => console.log(res))
+         .then((res) => this.setState({reviewsTxt: res, receivedResults: true}))
   }
 
   render() {
@@ -43,8 +43,13 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div className="app">
-          <SearchBox setSearchTerm={this.setSearchTerm} setReviewsTxt={this.setReviewsTxt}/>
-          <DownloadLinks reviewsTxt={this.state.reviewsTxt}/>
+          {/* {
+            this.state.receivedResults ?
+              <DownloadLinks reviewsTxt={this.state.reviewsTxt}/> :
+              <SearchBox setSearchTerm={this.setSearchTerm} setReviewsTxt={this.setReviewsTxt}/>
+          } */}
+          {/*<SearchBox setSearchTerm={this.setSearchTerm} setReviewsTxt={this.setReviewsTxt}/>*/}
+          <DownloadLinks reviewsTxt={this.state.reviewsTxt} movieTitle={this.state.searchTerm}/>
         </div>
       </MuiThemeProvider>
     );

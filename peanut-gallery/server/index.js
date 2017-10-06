@@ -31,7 +31,6 @@ app.get(`${baseURL}`, (req, res, next) => {
        .then((res) => {
          let imdbID = res.data.imdbID;
          reviews = scrapeFromURL(`http://www.imdb.com/title/${imdbID}/reviews`, movieTitle);
-         
       })
       res.status(200).send(reviews)  
 })
