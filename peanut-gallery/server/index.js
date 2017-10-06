@@ -15,7 +15,7 @@ let omdbApiKey = '1197693b',
     omdbBaseURL = 'http://www.omdbapi.com/',
     hardCodedTitle = 'Titanic';
 
-app.use(bodyParser());
+app.use(bodyParser.json());
 
 // replace movie title's spaces with %20
 hardCodedTitle = hardCodedTitle.toLowerCase().replace(' ', '%20');
