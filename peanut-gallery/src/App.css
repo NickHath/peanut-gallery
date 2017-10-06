@@ -1,13 +1,13 @@
-/*THIS IS SO COOL https://codepen.io/merb/pen/yOwJjj*/
-
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  width: 100%;
+  display: flex;
 }
 
 h1 {
   font-family: 'Varela Round', 'Ultra', 'Abril Fatface', sans-serif;
-  animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
 }
 
 .app {
@@ -21,3 +21,18 @@ h1 {
   justify-content: center;
   align-items: center;
 }
+
+/* react-typist blinking cursor */
+.Typist .Cursor {
+  display: inline-block; }
+  .Typist .Cursor--blinking {
+    opacity: 1;
+    animation: blink 1s linear infinite; }
+
+@keyframes blink {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
