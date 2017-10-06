@@ -32,8 +32,8 @@ app.get(`${baseURL}:title`, (req, res, next) => {
   axios.get(`${omdbBaseURL}?apikey=${omdbApiKey}&t=${movieTitle}`)
        .then((res) => {
          // to write -- call web_scraper with correct imdb url, return all reviews
-         // 5 means end on the 5th page
-         // scrapeFromURL(`http://www.imdb.com/title/${imdbKey}/reviews`, 5, movieTitle);
+         // 50 means return the first 50 reviews
+         // scrapeFromURL(`http://www.imdb.com/title/${imdbKey}/reviews`, 50, movieTitle);
          res.status(200).send(res.data)
       });
 })
