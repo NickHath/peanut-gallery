@@ -18,15 +18,22 @@ app.use(bodyParser.json());
 
 // api endpoint that react will use to get reviews
 app.get(`${baseURL}`, (req, res, next) => {
+  let reviews;
+  console.log(req.query)
+  if (req.query.title === undefined) {
+    console.error('user has not passed in a title')
+  }
+
   let movieTitle = req.query.title;
   movieTitle = movieTitle.toLowerCase().replace(' ', '%20');
   // get imdbID and ratings from omdb api
   axios.get(`${omdbBaseURL}?apikey=${omdbApiKey}&t=${movieTitle}`)
        .then((res) => {
          let imdbID = res.data.imdbID;
-         let reviews = scrapeFromURL(`http://www.imdb.com/title/${imdbID}/reviews`, movieTitle);
-         res.status(200).send(reviews);
-      });
+         reviews = scrapeFromURL(`http://www.imdb.com/title/${imdbID}/reviews`, movieTitle);
+         
+      })
+      res.status(200).send(reviews)  
 })
 
 app.listen(port, () => console.log(`I'm listening... on port ${port}`));
