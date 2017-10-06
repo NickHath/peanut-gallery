@@ -7,8 +7,11 @@ import axios from 'axios';
 
 // components
 import SearchBox from './components/SearchBox'
-import ResultsFeed from './components/ResultsFeed'
-import ProgressBar from './components/ProgressBar'
+import DownloadLinks from './components/DownloadLinks'
+
+// stretch goal components
+// import ResultsFeed from './components/ResultsFeed'
+// import ProgressBar from './components/ProgressBar'
 
 // https://material.io/guidelines/components/cards.html#cards-content
 // USE CARDS IN A FEED FOR THE RESULTS COMPONENT
@@ -35,11 +38,12 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <MuiThemeProvider>
         <div className="app">
           <SearchBox setSearchTerm={this.setSearchTerm} setReviewsTxt={this.setReviewsTxt}/>
-          <DownloadLinks />
+          <DownloadLinks reviewsTxt={this.state.reviewsTxt}/>
         </div>
       </MuiThemeProvider>
     );
