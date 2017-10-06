@@ -43,13 +43,11 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div className="app">
-          {/* {
+          {
             this.state.receivedResults ?
               <DownloadLinks reviewsTxt={this.state.reviewsTxt}/> :
               <SearchBox setSearchTerm={this.setSearchTerm} setReviewsTxt={this.setReviewsTxt}/>
-          } */}
-          {<SearchBox setSearchTerm={this.setSearchTerm} setReviewsTxt={this.setReviewsTxt}/>}
-          {/*<DownloadLinks reviewsTxt={this.state.reviewsTxt} movieTitle={this.state.searchTerm}/>*/}
+          } 
         </div>
       </MuiThemeProvider>
     );
