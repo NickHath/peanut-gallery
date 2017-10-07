@@ -32,7 +32,10 @@ class App extends Component {
     this.setState({searchTerm: searchTerm});
   }
 
-  // doesnt work when search term has multiple movie title matches!!!!!
+  // doesnt work when omdb gives a title with an empty imdb page
+  // http://www.imdb.com/title/tt1994570/reviews -- Terminator results in just the ads from
+  // this page!!!
+  // had to search The Terminator.. these are shell sites
   setReviewsTxt() {
     axios.get(`http://localhost:4200/api/reviews/?title=${this.state.searchTerm}`)
          // just ads?

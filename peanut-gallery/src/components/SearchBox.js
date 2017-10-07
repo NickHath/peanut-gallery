@@ -15,7 +15,7 @@ class SearchBox extends Component {
     super();
 
     this.state = {
-      sampleMovies: [{ name: 'Terminator', style: {color: '#f44336' }}, { name: 'Westside Story', style: {color: '#3f51b5' }}, { name: 'Moonrise Kingdom', style: {color: '#ffc107' }}, { name: 'Aliens', style: {color: '#ff5722' }}, { name: 'Jaws', style: {color: '#2196f3' }}, { name: 'Annie Hall', style: {color: '#607d8b' }}, { name: 'The Godfather', style: {color: '#009688' }}, { name: 'Titanic', style: {color: '#9c27b0' }}, { name: 'Beauty and the Beast', style: {color: '#757575' }}, { name: 'Gone In 60 Seconds', style: {color: '#795548' }}, { name: 'Saving Private Ryan', style: {color: '#e91e63' }}, { name: 'Shawshank Redemption', style: {color: '#f44336' }}, { name: 'Austin Powers', style: {color: '#2196f3' }}]
+      sampleMovies: [{ name: 'RoboCop', style: {color: '#f44336' }}, { name: 'Westside Story', style: {color: '#3f51b5' }}, { name: 'Moonrise Kingdom', style: {color: '#ffc107' }}, { name: 'Aliens', style: {color: '#ff5722' }}, { name: 'Jaws', style: {color: '#2196f3' }}, { name: 'Annie Hall', style: {color: '#607d8b' }}, { name: 'The Godfather', style: {color: '#009688' }}, { name: 'Titanic', style: {color: '#9c27b0' }}, { name: 'Beauty and the Beast', style: {color: '#757575' }}, { name: 'Gone In 60 Seconds', style: {color: '#795548' }}, { name: 'Saving Private Ryan', style: {color: '#e91e63' }}, { name: 'Shawshank Redemption', style: {color: '#f44336' }}, { name: 'Austin Powers', style: {color: '#2196f3' }}]
     }
   }
 

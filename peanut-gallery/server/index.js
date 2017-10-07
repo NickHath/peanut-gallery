@@ -23,7 +23,6 @@ async function getReviews(movieTitle) {
   await axios.get(`${omdbBaseURL}?apikey=${omdbApiKey}&t=${movieTitle}`)
     .then(async (res) => {
       let imdbID = res.data.imdbID;
-      // is imdbID correct?
       reviews = await scrapeCtrl.scrapeFromURL(`http://www.imdb.com/title/${imdbID}/reviews`, movieTitle);
   })
   return reviews;

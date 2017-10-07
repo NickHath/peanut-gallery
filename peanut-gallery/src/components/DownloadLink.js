@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const style = {
-  margin: 12
+  'margin-right': 12 ,
+  'margin-left': 6
 }
 
 const imdbColor = {
@@ -32,7 +33,7 @@ class DownloadLink extends Component {
         <h1>
           Download all <span style={imdbColor}>IMDb</span> reviews of {this.props.movieTitle[0].toUpperCase() + this.props.movieTitle.slice(1)}:
         </h1>
-        <RaisedButton label=".txt" style={style} onClick={this.download(this.props.movieTitle + '_reviews.txt', this.props.reviewsTxt)}/>
+        <RaisedButton label=".txt" style={style} onClick={() => this.download(this.props.movieTitle + '_reviews.txt', this.props.reviewsTxt)}/>
         <RaisedButton label=".html" style={style} />
         <RaisedButton label=".json" style={style} />
       </div>
