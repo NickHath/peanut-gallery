@@ -34,9 +34,8 @@ class App extends Component {
 
   setReviewsTxt() {
     axios.get(`http://localhost:4200/api/reviews/?title=${this.state.searchTerm}`)
-         .then((res) => res.data)
-         // res is undefined... async problem?
-         .then((res) => this.setState({reviewsTxt: res, receivedResults: true}))
+         // just ads?
+         .then((res) => this.setState({reviewsTxt: res.data, receivedResults: true}))
   }
 
   render() {

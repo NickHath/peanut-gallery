@@ -21,9 +21,10 @@ app.use(bodyParser.json());
 async function getReviews(movieTitle) {
   let reviews;
   await axios.get(`${omdbBaseURL}?apikey=${omdbApiKey}&t=${movieTitle}`)
-    .then((res) => {
+    .then(async (res) => {
       let imdbID = res.data.imdbID;
-      reviews = scrapeCtrl.scrapeFromURL(`http://www.imdb.com/title/${imdbID}/reviews`, movieTitle);
+      // is imdbID correct?
+      reviews = await scrapeCtrl.scrapeFromURL(`http://www.imdb.com/title/${imdbID}/reviews`, movieTitle);
   })
   return reviews;
 }
@@ -37,12 +38,6 @@ app.get(`${baseURL}`, async (req, res, next) => {
 
   let movieTitle = req.query.title;
   movieTitle = movieTitle.toLowerCase().replace(' ', '%20');
-  // get imdbID and ratings from omdb api
-  // axios.get(`${omdbBaseURL}?apikey=${omdbApiKey}&t=${movieTitle}`)
-  //      .then((res) => {
-  //        let imdbID = res.data.imdbID;
-  //        reviews = scrapeFromURL(`http://www.imdb.com/title/${imdbID}/reviews`, movieTitle);
-  //     })
   reviews = await getReviews(movieTitle);
   res.status(200).send(reviews)  
 })
