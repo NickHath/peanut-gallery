@@ -28,7 +28,7 @@ class DownloadLink extends Component {
         <h1>
           Download all imdb reviews of Placeholder{this.props.movieTitle}:
         </h1>
-        <RaisedButton label=".txt" style={style} onClick={this.download('test.txt', 'dasdsadsa')}/>
+        <RaisedButton label=".txt" style={style} onClick={this.download('terminator_test.txt', this.props.reviewsTxt)}/>
         <RaisedButton label=".html" style={style} />
         <RaisedButton label=".json" style={style} />
       </div>

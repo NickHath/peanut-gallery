@@ -8,7 +8,7 @@ const express = require('express'),
       baseURL = `/api/reviews/`;
 
 // webscraper
-const scrapeFromURL = require('./web_scraper.js')
+const scrapeCtrl = require('./web_scraper.js');
 
 // omdb api variables
 let omdbApiKey = '1197693b',
@@ -23,13 +23,13 @@ async function getReviews(movieTitle) {
   await axios.get(`${omdbBaseURL}?apikey=${omdbApiKey}&t=${movieTitle}`)
     .then((res) => {
       let imdbID = res.data.imdbID;
-      reviews = scrapeFromURL(`http://www.imdb.com/title/${imdbID}/reviews`, movieTitle);
+      reviews = scrapeCtrl.scrapeFromURL(`http://www.imdb.com/title/${imdbID}/reviews`, movieTitle);
   })
   return reviews;
 }
 
 // api endpoint that react will use to get reviews
-app.get(`${baseURL}`, (req, res, next) => {
+app.get(`${baseURL}`, async (req, res, next) => {
   let reviews;
   if (req.query.title === undefined) {
     console.error('user has not passed in a title')
@@ -43,7 +43,7 @@ app.get(`${baseURL}`, (req, res, next) => {
   //        let imdbID = res.data.imdbID;
   //        reviews = scrapeFromURL(`http://www.imdb.com/title/${imdbID}/reviews`, movieTitle);
   //     })
-  reviews = getReviewS(movieTitle);
+  reviews = await getReviews(movieTitle);
   res.status(200).send(reviews)  
 })
 

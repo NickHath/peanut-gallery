@@ -33,8 +33,9 @@ class App extends Component {
   }
 
   setReviewsTxt() {
-    axios.get(`localhost:4200/api/reviews/?title=${this.state.searchTerm}`)
-         .then((res) => console.log(res))
+    axios.get(`http://localhost:4200/api/reviews/?title=${this.state.searchTerm}`)
+         .then((res) => res.data)
+         // res is undefined... async problem?
          .then((res) => this.setState({reviewsTxt: res, receivedResults: true}))
   }
 

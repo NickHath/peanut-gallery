@@ -6,7 +6,7 @@ class DownloadLinks extends Component {
   render() {
     return (
       <div>
-        <DownloadLink display='.txt' downloadContent={this.props.reviewsTxt} movieTitle={this.props.movieTitle}/>
+        <DownloadLink display='.txt' movieTitle={this.props.movieTitle} reviewsTxt={this.props.reviewsTxt}/>
       </div>
     )
   }
