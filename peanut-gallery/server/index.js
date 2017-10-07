@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 // api endpoint that react will use to get reviews
 app.get(`${baseURL}`, (req, res, next) => {
   let reviews;
-  console.log(req.query)
+  // console.log(req.query)
   if (req.query.title === undefined) {
     console.error('user has not passed in a title')
   }

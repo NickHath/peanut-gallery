@@ -15,6 +15,7 @@
     "react-dom": "^16.0.0",
     "react-scripts": "1.0.14",
     "react-typist": "^1.1.1",
+    "react-typist-loop": "0.0.3",
     "sentiword": "0.0.1",
     "typed.js": "^2.0.6"
   },
