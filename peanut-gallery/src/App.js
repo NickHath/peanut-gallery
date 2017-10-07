@@ -33,7 +33,7 @@ class App extends Component {
   }
 
   setReviewsTxt() {
-    axios.get(`http://localhost:4000/api/reviews/?title=${this.state.searchTerm}`)
+    axios.get(`localhost:4200/api/reviews/?title=${this.state.searchTerm}`)
          .then((res) => console.log(res))
          .then((res) => this.setState({reviewsTxt: res, receivedResults: true}))
   }

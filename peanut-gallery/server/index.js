@@ -4,7 +4,7 @@ const express = require('express'),
       cors = require('cors'),   // to avoid Access-Control-Allow-Origin error
       app = express(),
       axios = require('axios'),
-      port = 4000,
+      port = 4200,
       baseURL = `/api/reviews/`;
 
 // webscraper
@@ -15,7 +15,7 @@ let omdbApiKey = '1197693b',
     omdbBaseURL = 'http://www.omdbapi.com/',
     hardCodedTitle = 'Titanic';
 
-app.use(cors())
+app.use(cors());
 app.use(bodyParser.json());
 
 async function getReviews(movieTitle) {
