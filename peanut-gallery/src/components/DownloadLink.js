@@ -5,6 +5,10 @@ const style = {
   margin: 12
 }
 
+const imdbColor = {
+  color: '#f5de50'
+}
+
 class DownloadLink extends Component {
   // https://stackoverflow.com/questions/2897619/using-html5-javascript-to-generate-and-save-a-file
   download(filename, text) {
@@ -26,9 +30,9 @@ class DownloadLink extends Component {
     return(
       <div className='download_links'>
         <h1>
-          Download all imdb reviews of Placeholder{this.props.movieTitle}:
+          Download all <span style={imdbColor}>IMDb</span> reviews of {this.props.movieTitle[0].toUpperCase() + this.props.movieTitle.slice(1)}:
         </h1>
-        <RaisedButton label=".txt" style={style} onClick={this.download('terminator_test.txt', this.props.reviewsTxt)}/>
+        <RaisedButton label=".txt" style={style} onClick={this.download(this.props.movieTitle + '_reviews.txt', this.props.reviewsTxt)}/>
         <RaisedButton label=".html" style={style} />
         <RaisedButton label=".json" style={style} />
       </div>

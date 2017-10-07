@@ -32,6 +32,7 @@ class App extends Component {
     this.setState({searchTerm: searchTerm});
   }
 
+  // doesnt work when search term has multiple movie title matches!!!!!
   setReviewsTxt() {
     axios.get(`http://localhost:4200/api/reviews/?title=${this.state.searchTerm}`)
          // just ads?
@@ -45,7 +46,7 @@ class App extends Component {
         <div className="app">
           {
             this.state.receivedResults ?
-              <DownloadLinks reviewsTxt={this.state.reviewsTxt}/> :
+              <DownloadLinks reviewsTxt={this.state.reviewsTxt} movieTitle={this.state.searchTerm}/> :
               <SearchBox setSearchTerm={this.setSearchTerm} setReviewsTxt={this.setReviewsTxt}/>
           } 
         </div>
