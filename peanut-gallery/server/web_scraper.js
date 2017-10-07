@@ -26,7 +26,7 @@ async function scrapeFromURL(url, title) {
            });
          })
   }
-  console.log(reviewsTXT);
+  // console.log(reviewsTXT);
   return reviewsTXT;
 }
 

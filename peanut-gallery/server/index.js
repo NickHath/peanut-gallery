@@ -18,10 +18,19 @@ let omdbApiKey = '1197693b',
 app.use(cors())
 app.use(bodyParser.json());
 
+async function getReviews(movieTitle) {
+  let reviews;
+  await axios.get(`${omdbBaseURL}?apikey=${omdbApiKey}&t=${movieTitle}`)
+    .then((res) => {
+      let imdbID = res.data.imdbID;
+      reviews = scrapeFromURL(`http://www.imdb.com/title/${imdbID}/reviews`, movieTitle);
+  })
+  return reviews;
+}
+
 // api endpoint that react will use to get reviews
 app.get(`${baseURL}`, (req, res, next) => {
   let reviews;
-  // console.log(req.query)
   if (req.query.title === undefined) {
     console.error('user has not passed in a title')
   }
@@ -29,11 +38,12 @@ app.get(`${baseURL}`, (req, res, next) => {
   let movieTitle = req.query.title;
   movieTitle = movieTitle.toLowerCase().replace(' ', '%20');
   // get imdbID and ratings from omdb api
-  axios.get(`${omdbBaseURL}?apikey=${omdbApiKey}&t=${movieTitle}`)
-       .then((res) => {
-         let imdbID = res.data.imdbID;
-         reviews = scrapeFromURL(`http://www.imdb.com/title/${imdbID}/reviews`, movieTitle);
-      })
+  // axios.get(`${omdbBaseURL}?apikey=${omdbApiKey}&t=${movieTitle}`)
+  //      .then((res) => {
+  //        let imdbID = res.data.imdbID;
+  //        reviews = scrapeFromURL(`http://www.imdb.com/title/${imdbID}/reviews`, movieTitle);
+  //     })
+  reviews = getReviewS(movieTitle);
   res.status(200).send(reviews)  
 })
 

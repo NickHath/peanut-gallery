@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import LinearProgress from 'material-ui/LinearProgress';
+
+// USE https://github.com/react-component/progress
 
 class ProgressBar extends Component {
 
   render() {
     return(
-      <LinearProgress mode="indeterminate" />
+      <div></div>
     )
   }
 }
