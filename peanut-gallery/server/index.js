@@ -34,7 +34,7 @@ app.get(`${baseURL}`, (req, res, next) => {
          let imdbID = res.data.imdbID;
          reviews = scrapeFromURL(`http://www.imdb.com/title/${imdbID}/reviews`, movieTitle);
       })
-      res.status(200).send(reviews)  
+  res.status(200).send(reviews)  
 })
 
 app.listen(port, () => console.log(`I'm listening... on port ${port}`));
