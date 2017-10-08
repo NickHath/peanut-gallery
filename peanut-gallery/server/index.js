@@ -41,6 +41,7 @@ app.get(`${baseURL}`, async (req, res, next) => {
   movieTitle = movieTitle.toLowerCase().replace(' ', '%20');
   reviews = await getReviews(movieTitle);
   reviews.reviewsTXT = reviews.reviewsTXT.replace(firstAdRegEx, '').replace(secondAdRegEx, '');
+  // JSON FORMAT
   // reviews.reviewsJSON = {};
   // reviews.reviewsTXT.split(/\n\n/).forEach((review) => {
   //   reviewsJSON['review' + reviewNum] = review
