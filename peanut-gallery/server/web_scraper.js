@@ -26,7 +26,7 @@ module.exports = {
             });
           })
     }
-    return reviewsTXT;
+    return {reviewsTXT: reviewsTXT, reviewsHTML: reviewsHTML};
   }
 }
 

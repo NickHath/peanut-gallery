@@ -32,7 +32,7 @@ async function getReviews(movieTitle) {
 
 // api endpoint that react will use to get reviews
 app.get(`${baseURL}`, async (req, res, next) => {
-  let reviews;
+  let reviews, reviewNum = 0;
   if (req.query.title === undefined) {
     console.error('user has not passed in a title')
   }
@@ -40,7 +40,13 @@ app.get(`${baseURL}`, async (req, res, next) => {
   let movieTitle = req.query.title;
   movieTitle = movieTitle.toLowerCase().replace(' ', '%20');
   reviews = await getReviews(movieTitle);
-  res.status(200).send(reviews.replace(firstAdRegEx, '').replace(secondAdRegEx, ''));  
+  reviews.reviewsTXT = reviews.reviewsTXT.replace(firstAdRegEx, '').replace(secondAdRegEx, '');
+  // reviews.reviewsJSON = {};
+  // reviews.reviewsTXT.split(/\n\n/).forEach((review) => {
+  //   reviewsJSON['review' + reviewNum] = review
+  //   reviewNum++;
+  // })
+  res.status(200).send(reviews);  
 })
 
 app.listen(port, () => console.log(`I'm listening... on port ${port}`));
