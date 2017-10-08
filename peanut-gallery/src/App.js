@@ -8,10 +8,11 @@ import axios from 'axios';
 // components
 import SearchBox from './components/SearchBox'
 import DownloadLinks from './components/DownloadLinks'
+import ProgressBar from './components/ProgressBar'
 
 // stretch goal components
 // import ResultsFeed from './components/ResultsFeed'
-// import ProgressBar from './components/ProgressBar'
+
 
 // https://material.io/guidelines/components/cards.html#cards-content
 // USE CARDS IN A FEED FOR THE RESULTS COMPONENT
@@ -23,7 +24,8 @@ class App extends Component {
       searchTerm: "",
       reviewsTxt: "",
       reviewsHtml: "",
-      receivedResults: false // for conditional rendering of search box / download links 
+      receivedResults: false, // for conditional rendering of search box / download links 
+      progress: 0.0
     }
     this.setSearchTerm = this.setSearchTerm.bind(this);
     this.setReviews = this.setReviews.bind(this);
@@ -56,6 +58,7 @@ class App extends Component {
               <DownloadLinks reviewsTxt={this.state.reviewsTxt} reviewsHtml={this.state.reviewsHtml} movieTitle={this.state.searchTerm}/> :
               <SearchBox setSearchTerm={this.setSearchTerm} setReviews={this.setReviews}/>
           } 
+          {/* <ProgressBar /> */}
         </div>
       </MuiThemeProvider>
     );

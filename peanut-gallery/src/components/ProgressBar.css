@@ -1,0 +1,10 @@
+#line_container {
+  height: 100px;
+  width: 100px;
+}
+
+#line_container > svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}

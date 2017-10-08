@@ -13,6 +13,7 @@
     "material-ui": "^0.19.3",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-progressbar": "^15.4.1",
     "react-scripts": "1.0.14",
     "react-typist": "^1.1.1",
     "react-typist-loop": "0.0.3",
