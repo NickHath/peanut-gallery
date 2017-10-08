@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const style = {
-  'margin-right': 12 ,
-  'margin-left': 6
+  'marginRight': 12 ,
+  'marginLeft': 6
 }
 
 const imdbColor = {

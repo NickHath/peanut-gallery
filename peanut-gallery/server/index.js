@@ -9,6 +9,8 @@ const express = require('express'),
 
 // webscraper
 const scrapeCtrl = require('./web_scraper.js');
+const firstAdRegEx = /Movies[\s\S]*?(at Amazon)/g
+const secondAdRegEx = /(Add another review)[\s\S]*?(phone or tablet!)/g
 
 // omdb api variables
 let omdbApiKey = '1197693b',
@@ -38,7 +40,7 @@ app.get(`${baseURL}`, async (req, res, next) => {
   let movieTitle = req.query.title;
   movieTitle = movieTitle.toLowerCase().replace(' ', '%20');
   reviews = await getReviews(movieTitle);
-  res.status(200).send(reviews)  
+  res.status(200).send(reviews.replace(firstAdRegEx, '').replace(secondAdRegEx, ''));  
 })
 
 app.listen(port, () => console.log(`I'm listening... on port ${port}`));
