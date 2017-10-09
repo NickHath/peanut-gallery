@@ -24,8 +24,8 @@ async function getReviews(movieTitle) {
   let reviews;
   await axios.get(`${omdbBaseURL}?apikey=${omdbApiKey}&t=${movieTitle}`)
              .then(async (res) => {
-               let imdbID = res.data.imdbID;
-              reviews = await scrapeCtrl.scrapeFromURL(`http://www.imdb.com/title/${imdbID}/reviews`, movieTitle);
+                let imdbID = res.data.imdbID;
+                reviews = await scrapeCtrl.scrapeFromURL(`http://www.imdb.com/title/${imdbID}/reviews`, movieTitle);
   })
   return reviews;
 }
@@ -44,6 +44,7 @@ app.get(`${baseURL}`, async (req, res, next) => {
 })
 
 app.get(`/api/progress`, scrapeCtrl.getProgress);
+app.get(`/api/refresh`, scrapeCtrl.refresh);
 
 app.listen(port, () => console.log(`I'm listening... on port ${port}`));
 

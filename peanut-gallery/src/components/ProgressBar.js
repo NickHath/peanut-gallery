@@ -15,12 +15,12 @@ class ProgressBar extends Component {
   }
 
   componentDidMount() {
+    axios.get(`http://localhost:4200/api/refresh`);
     this.setState(this.state);
   }
 
   componentDidUpdate() {
     if (this.state.progress < 100) {
-      // this.setState({progress: this.state.progress + 10.0}, () => console.log(this.state));
       this.updateProgress();
     }
   }

@@ -5,6 +5,9 @@ let progress = {percent: 0, display:''};
 
 // export the scraping function
 module.exports = {
+  refresh: function() {
+    progress = {percent: 0, display:''};
+  },
   scrapeFromURL: async function (url, title) {
     // hardcode max num of pages to scrape
     let lastPageIndex = 10;
@@ -26,8 +29,6 @@ module.exports = {
           })
     }
     // reset progress after scraping
-    progress.percent = 0;
-    progress.display = '';
     return {reviewsTXT: reviewsTXT, reviewsHTML: reviewsHTML};
   },
   getProgress: function (req, res, next) {
