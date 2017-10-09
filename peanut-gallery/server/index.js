@@ -23,32 +23,27 @@ app.use(bodyParser.json());
 async function getReviews(movieTitle) {
   let reviews;
   await axios.get(`${omdbBaseURL}?apikey=${omdbApiKey}&t=${movieTitle}`)
-    .then(async (res) => {
-      let imdbID = res.data.imdbID;
-      reviews = await scrapeCtrl.scrapeFromURL(`http://www.imdb.com/title/${imdbID}/reviews`, movieTitle);
+             .then(async (res) => {
+               let imdbID = res.data.imdbID;
+              reviews = await scrapeCtrl.scrapeFromURL(`http://www.imdb.com/title/${imdbID}/reviews`, movieTitle);
   })
   return reviews;
 }
 
 // api endpoint that react will use to get reviews
 app.get(`${baseURL}`, async (req, res, next) => {
-  let reviews, reviewNum = 0;
+  let reviews;
   if (req.query.title === undefined) {
     console.error('user has not passed in a title')
   }
-
   let movieTitle = req.query.title;
   movieTitle = movieTitle.toLowerCase().replace(' ', '%20');
   reviews = await getReviews(movieTitle);
   reviews.reviewsTXT = reviews.reviewsTXT.replace(firstAdRegEx, '').replace(secondAdRegEx, '');
-  // JSON FORMAT
-  // reviews.reviewsJSON = {};
-  // reviews.reviewsTXT.split(/\n\n/).forEach((review) => {
-  //   reviewsJSON['review' + reviewNum] = review
-  //   reviewNum++;
-  // })
   res.status(200).send(reviews);  
 })
+
+app.get(`/api/progress`, scrapeCtrl.getProgress);
 
 app.listen(port, () => console.log(`I'm listening... on port ${port}`));
 
@@ -62,3 +57,10 @@ app.listen(port, () => console.log(`I'm listening... on port ${port}`));
 // // testing script for single movie title
 // axios.get(`${omdbBaseURL}?apikey=${omdbApiKey}&t=${hardCodedTitle}`)
 //      .then((res) => fs.writeFile(`${hardCodedTitle}.json`, JSON.stringify(res.data)));
+
+  // JSON FORMAT
+  // reviews.reviewsJSON = {};
+  // reviews.reviewsTXT.split(/\n\n/).forEach((review) => {
+  //   reviewsJSON['review' + reviewNum] = review
+  //   reviewNum++;
+  // })

@@ -24,6 +24,7 @@ class App extends Component {
       searchTerm: "",
       reviewsTxt: "",
       reviewsHtml: "",
+      receivedUserInput: false,
       receivedResults: false, // for conditional rendering of search box / download links 
       progress: 0.0
     }
@@ -40,12 +41,16 @@ class App extends Component {
   // this page!!!
   // had to search The Terminator.. these are shell sites
   setReviews() {
+    this.setState({receivedUserInput: true});
     axios.get(`http://localhost:4200/api/reviews/?title=${this.state.searchTerm}`)
          // just ads?
-         .then((res) => this.setState({reviewsTxt: res.data.reviewsTXT, 
-                                       reviewsHtml: res.data.reviewsHTML,
-                                       receivedResults: true
-        }))
+         .then((res) => {
+        //  setTimeout(this.setState, 500, {reviewsTxt: res.data.reviewsTXT, reviewsHtml: res.data.reviewsHTML, receivedResults: true})
+         this.setState({reviewsTxt: res.data.reviewsTXT, 
+                        reviewsHtml: res.data.reviewsHTML,
+                        receivedResults: true
+        })
+      })
   }
 
   render() {
@@ -56,9 +61,11 @@ class App extends Component {
           {
             this.state.receivedResults ?
               <DownloadLinks reviewsTxt={this.state.reviewsTxt} reviewsHtml={this.state.reviewsHtml} movieTitle={this.state.searchTerm}/> :
-              <SearchBox setSearchTerm={this.setSearchTerm} setReviews={this.setReviews}/>
+              this.state.receivedUserInput ? 
+                <ProgressBar /> :
+                <SearchBox setSearchTerm={this.setSearchTerm} setReviews={this.setReviews}/>
+                
           } 
-          {/* <ProgressBar /> */}
         </div>
       </MuiThemeProvider>
     );

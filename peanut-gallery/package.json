@@ -8,17 +8,15 @@
     "cheerio": "^1.0.0-rc.2",
     "cors": "^2.8.4",
     "express": "^4.16.1",
-    "js-file-download": "^0.4.1",
     "lowdb": "^1.0.0",
     "material-ui": "^0.19.3",
+    "rc-progress": "^2.2.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-progressbar": "^15.4.1",
     "react-scripts": "1.0.14",
     "react-typist": "^1.1.1",
     "react-typist-loop": "0.0.3",
-    "sentiword": "0.0.1",
-    "typed.js": "^2.0.6"
+    "sentiword": "0.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

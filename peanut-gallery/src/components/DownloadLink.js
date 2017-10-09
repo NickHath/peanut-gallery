@@ -31,7 +31,7 @@ class DownloadLink extends Component {
     return(
       <div className='download_links'>
         <h1>
-          Download all <span style={imdbColor}>IMDb</span> reviews of {this.props.movieTitle[0].toUpperCase() + this.props.movieTitle.slice(1)}:
+          Download all <span style={imdbColor}>IMDb</span> reviews of {this.props.movieTitle.split(" ").map((word) => word[0].toUpperCase() + word.slice(1)).join(" ")} 
         </h1>
         <RaisedButton label=".txt" style={style} onClick={() => this.download(this.props.movieTitle + '_reviews.txt', this.props.reviewsTxt)}/>
         <RaisedButton label=".html" style={style} onClick={() => this.download(this.props.movieTitle + '_reviews.html', this.props.reviewsHtml)}/>
