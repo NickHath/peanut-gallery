@@ -13,7 +13,6 @@ const style = {
 const underlineFocusStyle = {
   borderColor: grey500
 }
-// change to react-type !!! https://www.npmjs.com/package/react-type
 
 class SearchBox extends Component {
   constructor() {
