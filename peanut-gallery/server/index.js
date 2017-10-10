@@ -8,7 +8,7 @@ const express = require('express'),
 
 // omdb api variables
 let omdbApiKey = '1197693b',
-omdbBaseURL = 'http://www.omdbapi.com/',
+    omdbBaseURL = 'http://www.omdbapi.com/';
 
 // webscraper
 const scrapeCtrl = require('./web_scraper.js');
@@ -43,6 +43,7 @@ app.get(`${baseURL}`, async (req, res, next) => {
   reviews = await getReviews(movieTitle);
   // delete ad text using two RegExps
   reviews.reviewsTXT = reviews.reviewsTXT.replace(firstAdRegEx, '').replace(secondAdRegEx, '');
+  
   res.status(200).send(reviews);  
 })
 

@@ -12,6 +12,7 @@ class ProgressBar extends Component {
       progress: 0.0,
       display: ''
     }
+    this.refresh = this.refresh.bind(this);
   }
 
   componentDidMount() {
@@ -25,12 +26,23 @@ class ProgressBar extends Component {
     }
   }
 
+  refresh() {
+    this.setState({state: this.state});
+  }
+
   updateProgress() {
     axios.get(`http://localhost:4200/api/progress`)
-         .then((res) => this.setState({progress: res.data.percent, display: res.data.display}, ()=>console.log(this.state)))
+         .then((res) => {
+           if (this.state.progress !== res.data.percent) {
+             this.setState({progress: res.data.percent, display: res.data.display});
+           } else {
+             setTimeout(this.refresh, 1000); 
+           }
+        })
   }
 
   render() {
+    console.log(this.state);
     return(
       <div className='progress_container'> 
         <Line percent={this.state.progress} strokeWidth="1" strokeColor="#9E9E9E" />
