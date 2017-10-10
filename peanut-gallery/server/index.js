@@ -1,32 +1,32 @@
 // required packages
 const express = require('express'),
-      bodyParser = require('body-parser'),
-      cors = require('cors'),   // to avoid Access-Control-Allow-Origin error
+      cors = require('cors'),   
       app = express(),
       axios = require('axios'),
       port = 4200,
       baseURL = `/api/reviews/`;
+
+// omdb api variables
+let omdbApiKey = '1197693b',
+omdbBaseURL = 'http://www.omdbapi.com/',
 
 // webscraper
 const scrapeCtrl = require('./web_scraper.js');
 const firstAdRegEx = /Movies[\s\S]*?(at Amazon)/g
 const secondAdRegEx = /(Add another review)[\s\S]*?(phone or tablet!)/g
 
-// omdb api variables
-let omdbApiKey = '1197693b',
-    omdbBaseURL = 'http://www.omdbapi.com/',
-    hardCodedTitle = 'Titanic';
-
 app.use(cors());
-app.use(bodyParser.json());
 
 async function getReviews(movieTitle) {
   let reviews;
+  // converts movieTitle from user input to its imdb key, then calls
+  // scrapeFromURL using that movie's reviews url endpoint
   await axios.get(`${omdbBaseURL}?apikey=${omdbApiKey}&t=${movieTitle}`)
              .then(async (res) => {
                 let imdbID = res.data.imdbID;
                 reviews = await scrapeCtrl.scrapeFromURL(`http://www.imdb.com/title/${imdbID}/reviews`, movieTitle);
   })
+  // returns an object with two ids: reviewsTXT and reviewsHTML
   return reviews;
 }
 
@@ -36,9 +36,12 @@ app.get(`${baseURL}`, async (req, res, next) => {
   if (req.query.title === undefined) {
     console.error('user has not passed in a title')
   }
+  // set movieTitle to user input and clean it
   let movieTitle = req.query.title;
   movieTitle = movieTitle.toLowerCase().replace(' ', '%20');
+  // wait for getReviews to return scraped .txt and .html files
   reviews = await getReviews(movieTitle);
+  // delete ad text using two RegExps
   reviews.reviewsTXT = reviews.reviewsTXT.replace(firstAdRegEx, '').replace(secondAdRegEx, '');
   res.status(200).send(reviews);  
 })
@@ -47,21 +50,3 @@ app.get(`/api/progress`, scrapeCtrl.getProgress);
 app.get(`/api/refresh`, scrapeCtrl.refresh);
 
 app.listen(port, () => console.log(`I'm listening... on port ${port}`));
-
-
-
-
-// for getting JSON from omdb api
-// // replace movie title's spaces with %20
-// hardCodedTitle = hardCodedTitle.toLowerCase().replace(' ', '%20');
-
-// // testing script for single movie title
-// axios.get(`${omdbBaseURL}?apikey=${omdbApiKey}&t=${hardCodedTitle}`)
-//      .then((res) => fs.writeFile(`${hardCodedTitle}.json`, JSON.stringify(res.data)));
-
-  // JSON FORMAT
-  // reviews.reviewsJSON = {};
-  // reviews.reviewsTXT.split(/\n\n/).forEach((review) => {
-  //   reviewsJSON['review' + reviewNum] = review
-  //   reviewNum++;
-  // })
