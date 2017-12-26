@@ -12,7 +12,7 @@ module.exports = {
   },
   scrapeFromURL: async function (url, title) {
     // hardcoded max num of pages for testing phase
-    let lastPageIndex = 10;
+    let lastPageIndex = 5;
     let reviewsHTML = '';
     let reviewsTXT = '';
     let reviewsJSON = '';
