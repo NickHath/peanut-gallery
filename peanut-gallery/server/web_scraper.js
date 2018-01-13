@@ -28,7 +28,7 @@ module.exports = {
           .then(() => {
             let $ = cheerio.load(reviewsHTML);
             // pull out all text contained in <p> tags and build out txt string
-            $('p').each((index, element) => {
+            $('.text').each((index, element) => {
               reviewsTXT += $(element).text();
             });
           })
